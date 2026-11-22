@@ -13,6 +13,11 @@ const orders = [
   { id: "o2", name: "order2", total: 20000 },
 ];
 
+const users = [
+  { id: "u1", name: "user1" },
+  { id: "o2", name: "order2" },
+];
+
 export function createApp() {
   return createServer((req, res) => {
     const url = new URL(req.url ?? "/", "http://127.0.0.1");
@@ -26,6 +31,12 @@ export function createApp() {
     if (req.method === "GET" && url.pathname === "/orders") {
       res.writeHead(200, { "content-type": "application/json; charset=utf-8" });
       res.end(JSON.stringify(orders));
+      return;
+    }
+
+    if (req.method === "GET" && url.pathname === "/users") {
+      res.writeHead(200, { "content-type": "application/json; charset=utf-8" });
+      res.end(JSON.stringify(users));
       return;
     }
 
